@@ -1,16 +1,18 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 
 import { fetchMatchedJobs } from '../api/worker';
-import { Card } from '../components/Card';
+import { JobCard } from '../components/JobCard';
+import { useUserContext } from '../context/UserContext';
 
 function HomeScreen() {
+  const {userId} = useUserContext();
   const navigation = useNavigation();
   const { data } = useQuery({
     queryKey: ['matched-jobs'],
-    queryFn: () => fetchMatchedJobs('7f90df6e-b832-44e2-b624-3143d428001f'),
+    queryFn: () => fetchMatchedJobs(userId),
   });
 
   return (
@@ -21,7 +23,7 @@ function HomeScreen() {
           key={job.jobId}
           onPress={() => navigation.navigate('JobDetails', { job })}
         >
-          <Card
+          <JobCard
             jobName={job.jobTitle.name}
             image={job.jobTitle.imageUrl}
             companyName={job.company.name}

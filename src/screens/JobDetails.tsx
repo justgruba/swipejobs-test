@@ -5,20 +5,22 @@ import { useMutation } from '@tanstack/react-query';
 
 import { fetchAcceptJob, fetchRejectJob } from '../api/worker';
 import { RootStackParamList } from '../navigation/AppStack';
+import { useUserContext } from '../context/UserContext';
 
 function JobDetailsScreen() {
   const navigation = useNavigation();
+  const {userId} = useUserContext();
   const route = useRoute<RouteProp<RootStackParamList, 'JobDetails'>>();
   const { job } = route.params;
   console.log(job);
   const { data: acceptJob, mutate: mutateAccept } = useMutation({
     mutationFn: () =>
-      fetchAcceptJob('7f90df6e-b832-44e2-b624-3143d428001f', '5775d8e18a488e6c5bb08333'),
+      fetchAcceptJob(userId, '5775d8e18a488e6c5bb08333'),
   });
 
   const { data: rejectJob, mutate: mutateReject } = useMutation({
     mutationFn: () =>
-      fetchRejectJob('7f90df6e-b832-44e2-b624-3143d428001f', '5775d8e18a488e6c5bb08333'),
+      fetchRejectJob(userId, '5775d8e18a488e6c5bb08333'),
   });
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

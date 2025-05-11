@@ -11,7 +11,7 @@ type CardType = {
   milesToTravel: number;
 };
 
-export const Card = ({
+export const JobCard = ({
   jobName,
   image,
   companyName,
