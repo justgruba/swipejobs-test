@@ -1,6 +1,7 @@
-import { RouteProp } from '@react-navigation/native';
-
-import { RootStackParamList } from '../navigation/AppStack';
+type Address =  {
+  formattedAddress: string;
+  zoneId: string;
+}
 
 export type JobListing = {
   jobId: string;
@@ -10,10 +11,7 @@ export type JobListing = {
   };
   company: {
     name: string;
-    address: {
-      formattedAddress: string;
-      zoneId: string;
-    };
+    address: Address;
     reportTo: {
       name: string;
       phone?: string;
@@ -22,10 +20,20 @@ export type JobListing = {
   wagePerHourInCents: number;
   milesToTravel: number;
   shifts: {
-    startDate: string; // ISO string
+    startDate: string;
     endDate: string;
   }[];
   branch: string;
   branchPhoneNumber: string;
   requirements?: string[];
 };
+
+export type Worker =  {
+  address: Address;
+  email: string;
+  firstName: string;
+  lastName: string;
+  maxJobDistance: number;
+  phoneNumber: string;
+  workerId: string;
+}

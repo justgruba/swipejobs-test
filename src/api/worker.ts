@@ -1,8 +1,8 @@
 import { axios } from './axios';
-import { JobListing } from './types';
+import { JobListing , Worker} from './types';
 
-export const fetchUserProfile = async (userId: string): Promise<any> => {
-  const userProfile = await axios.get<any>(`worker/${userId}/profile`);
+export const fetchUserProfile = async (userId: string): Promise<Worker> => {
+  const userProfile = await axios.get<Worker>(`worker/${userId}/profile`);
   return userProfile.data;
 };
 
