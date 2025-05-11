@@ -2,7 +2,7 @@ import { NavigationContainer, NavigatorScreenParams } from '@react-navigation/na
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { JobListing } from '../api/types';
-import JobDetails from '../screens/JobDetails';
+import JobDetails from '../screens/JobDetails/JobDetails';
 
 import HomeTabs, { BottomTabsParamList } from './HomeTabs';
 

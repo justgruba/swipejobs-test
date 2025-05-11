@@ -8,7 +8,7 @@ import { JobCard } from '../components/JobCard';
 import { useUserContext } from '../context/UserContext';
 
 function HomeScreen() {
-  const {userId} = useUserContext();
+  const { userId } = useUserContext();
   const navigation = useNavigation();
   const { data } = useQuery({
     queryKey: ['matched-jobs'],

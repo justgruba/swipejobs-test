@@ -21,7 +21,7 @@ export const JobCard = ({
 }: CardType) => {
   return (
     <View style={styles.card}>
-      <Image style={styles.image} source={{ uri: image }} />
+      <Image style={styles.image} contentFit="cover" source={{ uri: image }} />
       <View style={styles.infoContainer}>
         <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8} style={styles.jobName}>
           {jobName}
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     minHeight: 150,
   },
   image: {
-    width: 100,
+    width: '40%',
     height: 100,
     borderRadius: 8,
   },
