@@ -2,8 +2,8 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { StyleSheet } from 'react-native';
-import { fetchUserProfile } from '../api/worker';
-import { useUserContext } from '../context/UserContext';
+import { fetchUserProfile } from '@/api/worker';
+import { useUserContext } from '@/context/UserContext';
 import { Card, Icon } from 'react-native-paper';
 
 function ProfileScreen() {

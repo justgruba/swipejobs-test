@@ -5,9 +5,9 @@ import { useMutation } from '@tanstack/react-query';
 import { format, toZonedTime } from 'date-fns-tz';
 import { Text, Button, Divider, Card, Icon } from 'react-native-paper';
 
-import { fetchAcceptJob, fetchRejectJob } from '../../api/worker';
-import { useUserContext } from '../../context/UserContext';
-import { RootStackParamList } from '../../navigation/AppStack';
+import { fetchAcceptJob, fetchRejectJob } from '@/api/worker';
+import { useUserContext } from '@/context/UserContext';
+import { RootStackParamList } from '@/navigation/AppStack';
 
 import { InfoBanner } from './InfoBanner';
 import { JobActions } from './JobActions';

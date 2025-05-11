@@ -17,7 +17,7 @@ export const InfoBanner = ({ milesToTravel, wagePerHourInCents }: InfoBannerType
       <View>
         <Text variant='titleSmall'  style={styles.label}>Hourly Rate</Text>
         <View style={{flexDirection: 'row'}}>
-            <Text variant='titleSmall'  style={styles.label}>$</Text>
+            <Text variant='titleSmall'  style={[styles.label, {color:'white'}]}>$</Text>
             <Text variant='titleLarge' style={styles.value}>
             {(wagePerHourInCents / 100).toFixed(2)}
             </Text>
@@ -30,17 +30,17 @@ export const InfoBanner = ({ milesToTravel, wagePerHourInCents }: InfoBannerType
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#30d4ac',
     paddingVertical: 12,
     justifyContent: 'space-between',
     alignItems: 'center'
   },
   label: {
-    color: '#fff',
+    color: 'black',
     fontWeight: 'bold',
   },
   value: {
-    color: '#fff',
+    color: 'white',
     fontWeight: 'bold',
   },
 });

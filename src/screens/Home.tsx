@@ -3,9 +3,9 @@ import { View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchMatchedJobs } from '../api/worker';
-import { JobCard } from '../components/JobCard';
-import { useUserContext } from '../context/UserContext';
+import { fetchMatchedJobs } from '@/api/worker';
+import { JobCard } from '@/components/JobCard';
+import { useUserContext } from '@/context/UserContext';
 
 function HomeScreen() {
   const { userId } = useUserContext();

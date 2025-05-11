@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   wage: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#27ae60',
+    color: '#30d4ac',
   },
   distance: {
     fontSize: 14,
