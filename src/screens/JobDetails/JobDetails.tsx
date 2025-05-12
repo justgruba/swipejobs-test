@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { StyleSheet, useWindowDimensions } from 'react-native';
-import { Image } from 'expo-image'; 
+import { StyleSheet } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
+import { Image } from 'expo-image';
 import { Divider, Card, Modal, Text, Button } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -36,11 +37,7 @@ const JobDetailsScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['left', 'right']}>
       <Card mode="contained" style={styles.container}>
-      <Image 
-          source={{ uri: jobTitle.imageUrl }}  
-          style={styles.image}  
-          contentFit="cover" 
-        />
+        <Image source={{ uri: jobTitle.imageUrl }} style={styles.image} contentFit="cover" />
         <Card.Title
           title={jobTitle.name}
           titleVariant="titleLarge"
@@ -75,7 +72,7 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     borderRadius: 10,
-    aspectRatio: 21/9
+    aspectRatio: 30 / 9,
   },
-  modal: { backgroundColor: 'white', padding: 20, margin: 50, borderRadius: 10 }
+  modal: { backgroundColor: 'white', padding: 20, margin: 50, borderRadius: 10 },
 });

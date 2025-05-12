@@ -15,12 +15,12 @@ export const JobActions = ({ showModal }: { showModal: (message: string) => void
 
   const { mutate: mutateAccept } = useMutation({
     mutationFn: () => fetchAcceptJob(userId, jobId),
-    onSuccess: (data) => showModal(data.message || "Successfully accepted!"),
+    onSuccess: (data) => showModal(data.message || 'Successfully accepted!'),
   });
 
   const { mutate: mutateReject } = useMutation({
     mutationFn: () => fetchRejectJob(userId, jobId),
-    onSuccess: (data) => showModal(data.message || "Successfully rejected!"),
+    onSuccess: (data) => showModal(data.message || 'Successfully rejected!'),
   });
 
   const handleReject = () => {
@@ -51,5 +51,5 @@ export const JobActions = ({ showModal }: { showModal: (message: string) => void
 
 const styles = StyleSheet.create({
   actionContainer: { justifyContent: 'space-between' },
-  button: { borderRadius: 'none', minWidth: 60},
+  button: { borderRadius: 0, minWidth: 60 },
 });

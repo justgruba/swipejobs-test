@@ -6,7 +6,7 @@ import { useJobDetailsContext } from '@/context/JobDetailsContext';
 import { useIconSize } from '@/hooks/useIconSize';
 
 export const RequirementsSection = () => {
-  const  iconSize  = useIconSize();
+  const iconSize = useIconSize();
   const {
     job: { requirements },
   } = useJobDetailsContext();
@@ -20,7 +20,7 @@ export const RequirementsSection = () => {
             requirements.map((tool, index) => <Text key={index}>- {tool}</Text>)
           ) : (
             <Text style={{ fontStyle: 'italic', color: 'gray' }}>
-              No specific skills or tools required
+              No specific skills or tools required.
             </Text>
           )}
         </View>

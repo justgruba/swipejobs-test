@@ -1,5 +1,7 @@
 import React from 'react';
-import { render} from '@testing-library/react-native';
+
+import { render } from '@testing-library/react-native';
+
 import { RequirementsSection } from '../screens/JobDetails/RequirementsSection';
 
 jest.mock('@/context/JobDetailsContext', () => ({
@@ -12,9 +14,8 @@ jest.mock('@/hooks/useIconSize', () => ({
 
 describe('<RequirementsSection />', () => {
   it('renders the "No specific skills or tools required" message when no requirements are provided', async () => {
-    
     require('@/context/JobDetailsContext').useJobDetailsContext.mockReturnValue({
-      job: {  requirements: null },
+      job: { requirements: null },
     });
 
     const { findByText } = render(<RequirementsSection />);
@@ -24,7 +25,6 @@ describe('<RequirementsSection />', () => {
   });
 
   it('renders the title and list of requirements when requirements are provided', async () => {
-
     require('@/context/JobDetailsContext').useJobDetailsContext.mockReturnValue({
       job: {
         requirements: ['Tool 1', 'Tool 2'],

@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
@@ -9,13 +9,15 @@ import { ErrorState } from '@/components/ErrorState';
 import { JobCard } from '@/components/JobCard';
 import { useJobDetailsContext } from '@/context/JobDetailsContext';
 import { useUserContext } from '@/context/UserContext';
+import { useCallback } from 'react';
+import type { JobDetails } from '@/api/types';
 
 function HomeScreen() {
   const { userId } = useUserContext();
   const navigation = useNavigation();
   const { setJob } = useJobDetailsContext();
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ['matched-jobs'],
+    queryKey: ['matched-jobs', userId],
     queryFn: () => fetchMatchedJobs(userId),
   });
 
@@ -27,28 +29,33 @@ function HomeScreen() {
     return <ErrorState onRetry={refetch} message={error?.message} />;
   }
 
+  const handlePress = useCallback((job: JobDetails) => {
+    setJob(job);
+    navigation.navigate('JobDetails');
+  }, [setJob, navigation]);
+  
   return (
-    <View style={{ flex: 1 }}>
-      {data?.map((job) => (
-        <TouchableOpacity
-          style={{ marginHorizontal: 10 }}
-          key={job.jobId}
-          onPress={() => {
-            setJob(job);
-            navigation.navigate('JobDetails');
-          }}
-        >
-          <JobCard
-            jobName={job.jobTitle.name}
-            image={job.jobTitle.imageUrl}
-            companyName={job.company.name}
-            address={job.company.address.formattedAddress}
-            wagePerHour={job.wagePerHourInCents}
-            milesToTravel={job.milesToTravel}
-          />
-        </TouchableOpacity>
-      ))}
-    </View>
+    <FlatList
+    data={data ?? []}
+    keyExtractor={(item) => item.jobId.toString()}
+    renderItem={({ item }) => (
+      <TouchableOpacity
+        style={{marginHorizontal: 10}}
+        onPress={() => handlePress(item)}
+      >
+        <JobCard
+          jobName={item.jobTitle.name}
+          image={item.jobTitle.imageUrl}
+          companyName={item.company.name}
+          address={item.company.address.formattedAddress}
+          wagePerHour={item.wagePerHourInCents}
+          milesToTravel={item.milesToTravel}
+        />
+      </TouchableOpacity>
+    )}
+    onRefresh={refetch}   
+    refreshing={isLoading}  
+  />
   );
 }
 

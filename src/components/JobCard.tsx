@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text } from 'react-native';
 
 import { Image } from 'expo-image';
+import { Icon } from 'react-native-paper';
 
 type CardType = {
   jobName: string;
@@ -30,7 +31,10 @@ export const JobCard = ({
         <Text style={styles.address}>{address}</Text>
         <View style={styles.detailsRow}>
           <Text style={styles.wage}>£{wagePerHour}</Text>
-          <Text style={styles.distance}>{milesToTravel.toFixed(2)} mi</Text>
+          <View style={{flexDirection: 'row'}}>
+            <Icon size={20} source="map-marker-distance" />
+            <Text style={styles.distance}> {milesToTravel.toFixed(2)} mi</Text>
+          </View>
         </View>
       </View>
     </View>
@@ -50,7 +54,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '40%',
-    height: 100,
+    aspectRatio: 1,
     borderRadius: 8,
   },
   infoContainer: {

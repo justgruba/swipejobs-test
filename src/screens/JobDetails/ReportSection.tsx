@@ -1,20 +1,25 @@
 import { StyleSheet } from 'react-native';
 
 import { Card, Icon } from 'react-native-paper';
+
 import { useJobDetailsContext } from '@/context/JobDetailsContext';
 import { useIconSize } from '@/hooks/useIconSize';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 export const ReportSection = () => {
-  const  iconSize  = useIconSize();
+  const iconSize = useIconSize();
   const {
-    job: { branch, branchPhoneNumber },
+    job: { branch, branchPhoneNumber},
   } = useJobDetailsContext();
+
+  const phoneNumber = branchPhoneNumber ? parsePhoneNumberFromString(branchPhoneNumber, 'US') : null;
+
 
   return (
     <Card.Title
       title="Report To"
       titleStyle={styles.text}
-      subtitle={`${branch} ${branchPhoneNumber}`}
+      subtitle={`${branch}  ${phoneNumber?.formatNational() ?? ''}`}
       left={() => <Icon size={iconSize} source="account-circle" />}
     />
   );

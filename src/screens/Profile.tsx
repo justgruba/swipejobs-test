@@ -1,13 +1,13 @@
 import { StyleSheet } from 'react-native';
 
-import { ActivityIndicator, Card, Icon } from 'react-native-paper';
+import { ActivityIndicator, Card, Icon, Text } from 'react-native-paper';
 
 import { ErrorState } from '@/components/ErrorState';
-import { useUserProfile } from '@/hooks/useUserProfile';
 import { useIconSize } from '@/hooks/useIconSize';
+import { useUserProfile } from '@/hooks/useUserProfile';
 
 function ProfileScreen() {
-  const  iconSize  = useIconSize();
+  const iconSize = useIconSize();
   const { isLoading, data, error, refetch } = useUserProfile();
 
   if (isLoading) {
@@ -36,7 +36,7 @@ function ProfileScreen() {
       <Card.Title
         title="Address"
         titleStyle={styles.text}
-        subtitle={data?.address?.formattedAddress}
+        subtitle={<Text>{data?.address?.formattedAddress}</Text>}
         left={() => <Icon size={iconSize} source="map-marker" />}
       />
 
