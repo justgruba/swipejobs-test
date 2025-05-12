@@ -3,10 +3,11 @@ import { StyleSheet } from 'react-native';
 import { ActivityIndicator, Card, Icon } from 'react-native-paper';
 
 import { ErrorState } from '@/components/ErrorState';
-import { ICON_SIZE } from '@/consts';
 import { useUserProfile } from '@/hooks/useUserProfile';
+import { useIconSize } from '@/hooks/useIconSize';
 
 function ProfileScreen() {
+  const  iconSize  = useIconSize();
   const { isLoading, data, error, refetch } = useUserProfile();
 
   if (isLoading) {
@@ -23,34 +24,34 @@ function ProfileScreen() {
         title="Full Name"
         titleStyle={styles.text}
         subtitle={`${data?.firstName} ${data?.lastName}`}
-        left={() => <Icon size={ICON_SIZE} source="account" />}
+        left={() => <Icon size={iconSize} source="account" />}
       />
       <Card.Title
         title="Email"
         titleStyle={styles.text}
         subtitle={data?.email}
-        left={() => <Icon size={ICON_SIZE} source="email" />}
+        left={() => <Icon size={iconSize} source="email" />}
       />
 
       <Card.Title
         title="Address"
         titleStyle={styles.text}
         subtitle={data?.address?.formattedAddress}
-        left={() => <Icon size={ICON_SIZE} source="map-marker" />}
+        left={() => <Icon size={iconSize} source="map-marker" />}
       />
 
       <Card.Title
         title="Job Distance"
         titleStyle={styles.text}
         subtitle={data?.maxJobDistance}
-        left={() => <Icon size={ICON_SIZE} source="map-marker-distance" />}
+        left={() => <Icon size={iconSize} source="map-marker-distance" />}
       />
 
       <Card.Title
         title="Phone Number"
         titleStyle={styles.text}
         subtitle={data?.phoneNumber}
-        left={() => <Icon size={ICON_SIZE} source="phone" />}
+        left={() => <Icon size={iconSize} source="phone" />}
       />
     </Card>
   );

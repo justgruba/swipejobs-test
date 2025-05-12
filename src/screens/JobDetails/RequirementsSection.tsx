@@ -2,10 +2,11 @@ import { View, StyleSheet } from 'react-native';
 
 import { Card, Icon, Text } from 'react-native-paper';
 
-import { ICON_SIZE } from '@/consts';
 import { useJobDetailsContext } from '@/context/JobDetailsContext';
+import { useIconSize } from '@/hooks/useIconSize';
 
 export const RequirementsSection = () => {
+  const  iconSize  = useIconSize();
   const {
     job: { requirements },
   } = useJobDetailsContext();
@@ -24,7 +25,7 @@ export const RequirementsSection = () => {
           )}
         </View>
       }
-      left={() => <Icon size={ICON_SIZE} source="tools" color="black" />}
+      left={() => <Icon size={iconSize} source="tools" color="black" />}
     />
   );
 };

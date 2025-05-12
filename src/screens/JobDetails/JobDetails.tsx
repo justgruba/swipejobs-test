@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { StyleSheet } from 'react-native';
-
+import { StyleSheet, useWindowDimensions } from 'react-native';
+import { Image } from 'expo-image'; 
 import { useNavigation } from '@react-navigation/native';
 import { Divider, Card, Modal, Text, Button } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -18,7 +18,6 @@ const JobDetailsScreen = () => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
-
   const {
     job: { jobTitle, company },
   } = useJobDetailsContext();
@@ -37,7 +36,11 @@ const JobDetailsScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['left', 'right']}>
       <Card mode="contained" style={styles.container}>
-        <Card.Cover source={{ uri: jobTitle.imageUrl }} style={styles.image} />
+      <Image 
+          source={{ uri: jobTitle.imageUrl }}  
+          style={styles.image}  
+          contentFit="cover" 
+        />
         <Card.Title
           title={jobTitle.name}
           titleVariant="titleLarge"
@@ -69,6 +72,10 @@ export default JobDetailsScreen;
 const styles = StyleSheet.create({
   container: { margin: 15, borderRadius: 10, backgroundColor: 'white' },
   text: { fontWeight: 'bold' },
-  image: { width: '100%', height: 120, borderRadius: 10 },
+  image: {
+    width: '100%',
+    borderRadius: 10,
+    aspectRatio: 21/9
+  },
   modal: { backgroundColor: 'white', padding: 20, margin: 50, borderRadius: 10 }
 });

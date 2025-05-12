@@ -1,17 +1,13 @@
-import { useState } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { useNavigation } from '@react-navigation/native';
 import { useMutation } from '@tanstack/react-query';
-import { Button, Card, Modal, Text } from 'react-native-paper';
+import { Button, Card } from 'react-native-paper';
 
 import { fetchAcceptJob, fetchRejectJob } from '@/api/worker';
 import { useJobDetailsContext } from '@/context/JobDetailsContext';
 import { useUserContext } from '@/context/UserContext';
 
 export const JobActions = ({ showModal }: { showModal: (message: string) => void }) => {
-  const navigation = useNavigation();
-
   const { userId } = useUserContext();
   const {
     job: { jobId },
@@ -55,5 +51,5 @@ export const JobActions = ({ showModal }: { showModal: (message: string) => void
 
 const styles = StyleSheet.create({
   actionContainer: { justifyContent: 'space-between' },
-  button: { borderRadius: 'none', minWidth: 60 },
+  button: { borderRadius: 'none', minWidth: 60},
 });
