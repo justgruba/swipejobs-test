@@ -1,53 +1,59 @@
+import { useState } from 'react';
+import { StyleSheet } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
 import { useMutation } from '@tanstack/react-query';
-import { Button, Card } from 'react-native-paper';
+import { Button, Card, Modal, Text } from 'react-native-paper';
 
 import { fetchAcceptJob, fetchRejectJob } from '@/api/worker';
 import { useJobDetailsContext } from '@/context/JobDetailsContext';
 import { useUserContext } from '@/context/UserContext';
 
-export const JobActions = () => {
+export const JobActions = ({ showModal }: { showModal: (message: string) => void }) => {
   const navigation = useNavigation();
-  const { userId } = useUserContext();
-  const { job } = useJobDetailsContext();
 
-  const { data: acceptJob, mutate: mutateAccept } = useMutation({
-    mutationFn: () => fetchAcceptJob(userId, job.jobId),
+  const { userId } = useUserContext();
+  const {
+    job: { jobId },
+  } = useJobDetailsContext();
+
+  const { mutate: mutateAccept } = useMutation({
+    mutationFn: () => fetchAcceptJob(userId, jobId),
+    onSuccess: (data) => showModal(data.message || "Successfully accepted!"),
   });
 
-  const { data: rejectJob, mutate: mutateReject } = useMutation({
-    mutationFn: () => fetchRejectJob(userId, job.jobId),
+  const { mutate: mutateReject } = useMutation({
+    mutationFn: () => fetchRejectJob(userId, jobId),
+    onSuccess: (data) => showModal(data.message || "Successfully rejected!"),
   });
 
   const handleReject = () => {
     mutateReject();
-    navigation.navigate('HomeTabs', { screen: 'Home' });
   };
 
   const handleAccept = () => {
     mutateAccept();
-    navigation.navigate('HomeTabs', { screen: 'Home' });
   };
 
   return (
-    <Card.Actions style={{ justifyContent: 'space-between' }}>
+    <Card.Actions style={styles.actionContainer}>
       <Button
         mode="outlined"
         textColor="grey"
         buttonColor="white"
-        style={{ borderRadius: 'none', minWidth: 60 }}
+        style={styles.button}
         onPress={handleReject}
       >
         No Thanks
       </Button>
-      <Button
-        mode="contained"
-        buttonColor="black"
-        style={{ borderRadius: 'none', minWidth: 60 }}
-        onPress={handleAccept}
-      >
+      <Button mode="contained" buttonColor="black" style={styles.button} onPress={handleAccept}>
         I'll Take it
       </Button>
     </Card.Actions>
   );
 };
+
+const styles = StyleSheet.create({
+  actionContainer: { justifyContent: 'space-between' },
+  button: { borderRadius: 'none', minWidth: 60 },
+});

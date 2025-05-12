@@ -43,7 +43,7 @@ const HeaderLeft = () => (
 );
 
 const HeaderRight = ({ name }: { name: string }) => (
-  <Text variant="headlineLarge" style={styles.text}>
+  <Text variant="headlineSmall" style={styles.text}>
     {name}
   </Text>
 );

@@ -18,7 +18,7 @@ function ProfileScreen() {
   }
 
   return (
-    <Card mode="contained" style={{ margin: 15, borderRadius: 10, backgroundColor: 'white' }}>
+    <Card mode="contained" style={styles.container}>
       <Card.Title
         title="Full Name"
         titleStyle={styles.text}
@@ -63,4 +63,5 @@ const styles = StyleSheet.create({
   loader: {
     marginTop: 50,
   },
+  container: { margin: 15, borderRadius: 10, backgroundColor: 'white' },
 });
