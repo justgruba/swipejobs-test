@@ -31,7 +31,7 @@ export const JobCard = ({
         <Text style={styles.address}>{address}</Text>
         <View style={styles.detailsRow}>
           <Text style={styles.wage}>£{wagePerHour}</Text>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             <Icon size={20} source="map-marker-distance" />
             <Text style={styles.distance}> {milesToTravel.toFixed(2)} mi</Text>
           </View>

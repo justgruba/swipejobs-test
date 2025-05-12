@@ -1,6 +1,6 @@
 import React, { createContext, useState, ReactNode, useContext } from 'react';
 
-import { JobDetails } from '@/api/types';
+import type { JobDetails } from '@/api/types';
 
 const defaultJob: JobDetails = {
   jobId: '',

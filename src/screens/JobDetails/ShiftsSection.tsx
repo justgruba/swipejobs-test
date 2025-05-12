@@ -29,11 +29,15 @@ export const ShiftsSection = () => {
       subtitle={
         <TouchableOpacity onPress={() => console.log('Open modal')}>
           {shifts.slice(0, 2).map((shift, index) => (
-            <Text  numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8} key={index}>
+            <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8} key={index}>
               {formatEvent(company.address.zoneId, shift.startDate, shift.endDate)}
             </Text>
           ))}
-          {shifts.length > 2 && <Text variant='bodySmall' style={styles.showMore}>Show {shifts.length - 2} More</Text>}
+          {shifts.length > 2 && (
+            <Text variant="bodySmall" style={styles.showMore}>
+              Show {shifts.length - 2} More
+            </Text>
+          )}
         </TouchableOpacity>
       }
       left={() => <Icon source="calendar-month" size={iconSize} color="black" />}

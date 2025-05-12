@@ -1,5 +1,5 @@
 import { axios } from './axios';
-import { JobDetails, Worker } from './types';
+import type { JobDetails, Worker } from './types';
 
 export const fetchUserProfile = async (userId: string): Promise<Worker> => {
   const userProfile = await axios.get<Worker>(`worker/${userId}/profile`);

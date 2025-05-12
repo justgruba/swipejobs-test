@@ -20,7 +20,7 @@ describe('<RequirementsSection />', () => {
 
     const { findByText } = render(<RequirementsSection />);
 
-    const message = await findByText('No specific skills or tools required');
+    const message = await findByText('No specific skills or tools required.');
     expect(message).toBeTruthy();
   });
 
