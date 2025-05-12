@@ -3,7 +3,11 @@
   "compilerOptions": {
     "strict": true,
     "baseUrl": "./",
-    "typeRoots": ["src/@types"],
+    "typeRoots": [
+      "src/@types",   
+      "node_modules/@types"  
+    ],
+    "types": ["jest"], 
     "paths": {
       "@/*": ["src/*"]
     }

@@ -30,7 +30,7 @@ export const JobCard = ({
         <Text style={styles.address}>{address}</Text>
         <View style={styles.detailsRow}>
           <Text style={styles.wage}>£{wagePerHour}</Text>
-          <Text style={styles.distance}>{milesToTravel} mi</Text>
+          <Text style={styles.distance}>{milesToTravel.toFixed(2)} mi</Text>
         </View>
       </View>
     </View>
