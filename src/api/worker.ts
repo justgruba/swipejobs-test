@@ -1,13 +1,13 @@
 import { axios } from './axios';
-import { JobListing , Worker} from './types';
+import { JobDetails, Worker } from './types';
 
 export const fetchUserProfile = async (userId: string): Promise<Worker> => {
   const userProfile = await axios.get<Worker>(`worker/${userId}/profile`);
   return userProfile.data;
 };
 
-export const fetchMatchedJobs = async (userId: string): Promise<JobListing[]> => {
-  const matchedJobs = await axios.get<JobListing[]>(`worker/${userId}/matches`);
+export const fetchMatchedJobs = async (userId: string): Promise<JobDetails[]> => {
+  const matchedJobs = await axios.get<JobDetails[]>(`worker/${userId}/matches`);
   return matchedJobs.data;
 };
 

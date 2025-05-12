@@ -1,9 +1,9 @@
-type Address =  {
+type Address = {
   formattedAddress: string;
   zoneId: string;
-}
+};
 
-export type JobListing = {
+export type JobDetails = {
   jobId: string;
   jobTitle: {
     name: string;
@@ -28,7 +28,7 @@ export type JobListing = {
   requirements?: string[];
 };
 
-export type Worker =  {
+export type Worker = {
   address: Address;
   email: string;
   firstName: string;
@@ -36,4 +36,4 @@ export type Worker =  {
   maxJobDistance: number;
   phoneNumber: string;
   workerId: string;
-}
+};
