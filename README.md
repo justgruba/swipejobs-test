@@ -3,13 +3,13 @@
 1. Install dependencies
 
    ```bash
-   npm install
+   yarn
    ```
 
 2. Start the app
 
    ```bash
-    npx expo start
+    yarn run start
    ```
 
 You can then open the app using the Expo Go app on your device or Android/iOS emulator 
