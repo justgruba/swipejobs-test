@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import { Image } from 'expo-image';
-import { Divider, Card, Modal, Text, Button } from 'react-native-paper';
+import { Divider, Card, Modal, Text, Button, Portal } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useJobDetailsContext } from '@/context/JobDetailsContext';
@@ -57,10 +57,12 @@ const JobDetailsScreen = () => {
         <Divider />
         <JobActions showModal={showModal} />
       </Card>
-      <Modal visible={modalVisible} onDismiss={hideModal} contentContainerStyle={styles.modal}>
-        <Text style={{ textAlign: 'center', marginBottom: 10 }}>{modalMessage}</Text>
-        <Button onPress={hideModal}>Close</Button>
-      </Modal>
+      <Portal>
+        <Modal visible={modalVisible} onDismiss={hideModal} contentContainerStyle={styles.modal}>
+          <Text style={{ textAlign: 'center', marginBottom: 10 }}>{modalMessage}</Text>
+          <Button onPress={hideModal}>Close</Button>
+        </Modal>
+      </Portal>
     </SafeAreaView>
   );
 };

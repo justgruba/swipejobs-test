@@ -3,7 +3,7 @@ import { TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
-import { ActivityIndicator } from 'react-native-paper';
+import { ActivityIndicator, Text } from 'react-native-paper';
 
 import type { JobDetails } from '@/api/types';
 import { fetchMatchedJobs } from '@/api/worker';
@@ -21,6 +21,14 @@ function HomeScreen() {
     queryFn: () => fetchMatchedJobs(userId),
   });
 
+  const handlePress = useCallback(
+    (job: JobDetails) => {
+      setJob(job);
+      navigation.navigate('JobDetails');
+    },
+    [setJob, navigation],
+  );
+
   if (isLoading) {
     return <ActivityIndicator style={styles.loader} />;
   }
@@ -29,13 +37,6 @@ function HomeScreen() {
     return <ErrorState onRetry={refetch} message={error?.message} />;
   }
 
-  const handlePress = useCallback(
-    (job: JobDetails) => {
-      setJob(job);
-      navigation.navigate('JobDetails');
-    },
-    [setJob, navigation],
-  );
 
   return (
     <FlatList
@@ -53,6 +54,7 @@ function HomeScreen() {
           />
         </TouchableOpacity>
       )}
+      ListEmptyComponent={<Text>List is empty</Text>}
       onRefresh={refetch}
       refreshing={isLoading}
     />
