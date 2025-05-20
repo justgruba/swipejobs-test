@@ -37,11 +37,10 @@ function HomeScreen() {
     return <ErrorState onRetry={refetch} message={error?.message} />;
   }
 
-
   return (
     <FlatList
       data={data ?? []}
-      keyExtractor={(item) => item.jobId.toString()}
+      keyExtractor={(item: JobDetails) => item.jobId.toString()}
       renderItem={({ item }) => (
         <TouchableOpacity style={{ marginHorizontal: 10 }} onPress={() => handlePress(item)}>
           <JobCard
